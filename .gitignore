@@ -1,0 +1,11 @@
+.DS_Store
+
+.idea
+*.iml
+
+.next
+node_modules
+package-lock.json
+yarn.lock
+
+*.log
