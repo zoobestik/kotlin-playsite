@@ -3,26 +3,27 @@ import { CompilerPlatforms } from '@/components/CodeArea/CompilerPlatforms';
 
 const Pane = () => <></>;
 
-const DEFAULT_COMPILER_OPTIONS = {
-  platform: CompilerPlatforms.JAVA,
-  version: '1.7.20',
-};
-
-const DEFAULT_CODE = `fun sum(a: Int, b: Int): Int {
+const DEFAULT_CODE = `
+// Path: components/CodeEditor/index.tsx
+fun sum(a: Int, b: Int): Int {
     return a + b
 }
 
 fun main() {
     print("sum of 3 and 5 is $ws")
     println(sum(3, 5))
-}`.trim();
+}
+        `.trim();
 
 export const CodeEditor = () => {
   return (
     <>
       <Pane />
       <CodeArea
-        compiler={DEFAULT_COMPILER_OPTIONS}
+        compiler={{
+          platform: CompilerPlatforms.JAVA,
+          version: '1.7.20',
+        }}
         defaultCode={DEFAULT_CODE}
       />
     </>

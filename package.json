@@ -14,6 +14,8 @@
     "lint": "next lint --fix"
   },
   "dependencies": {
+    "@monaco-editor/react": "^4.4.6",
+    "monaco-editor": "0.34.1",
     "next": "^13.0.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
