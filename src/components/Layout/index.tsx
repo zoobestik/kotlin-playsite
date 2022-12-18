@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 
+import Header from '@jetbrains/kotlin-web-site-ui/out/components/header';
 import Footer from '@jetbrains/kotlin-web-site-ui/out/components/footer';
 
 import styles from './styles.module.css';
@@ -12,7 +13,7 @@ type LayoutProps = {
 export const Layout = ({ children, footer = true }: LayoutProps) => {
   return (
     <div className={styles.layout}>
-      <header></header>
+      <Header searchConfig={{ searchAlgoliaId: '' }} />
       <main className={styles.main}>{children}</main>
       {footer && <Footer />}
     </div>

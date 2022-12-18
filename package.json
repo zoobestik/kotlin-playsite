@@ -15,6 +15,10 @@
   },
   "dependencies": {
     "@jetbrains/kotlin-web-site-ui": "^4.4.6",
+    "@react-hook/resize-observer": "^1.2.6",
+    "@rescui/button": "^0.7.4",
+    "@rescui/switcher": "^0.3.5",
+    "body-scroll-lock": "^4.0.0-beta.0",
     "next": "^13.0.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
