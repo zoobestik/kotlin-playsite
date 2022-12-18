@@ -24,7 +24,7 @@ export function transpileKotlinWebSiteUi() {
 
 /** @type string[] */
 export function transpileRescUI() {
-  return Object.keys(packageJson.packages)
+  return Object.keys(packageJson.dependencies)
     .map((it) => {
       const match = it.match(/^(node_modules\/)?(@rescui\/[^/]+)/);
       return match && match[2];
