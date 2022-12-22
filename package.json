@@ -2,32 +2,45 @@
   "name": "playground-v2",
   "version": "1.0.0-alpha.1",
   "private": true,
+  "browserslist": [
+    ">0.3%",
+    "not dead",
+    "not op_mini all"
+  ],
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint"
     }
   },
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "next dev",
+    "dev:turbo": "next dev --turbo",
     "build": "next build",
+    "lint": "next lint --fix",
     "start": "next start",
-    "lint": "next lint --fix"
+    "test:e2e": "playwright test",
+    "test:e2e-dev": "E2E_DEV=true playwright test"
   },
   "dependencies": {
     "@jetbrains/kotlin-web-site-ui": "^4.4.6",
     "@react-hook/resize-observer": "^1.2.6",
     "@rescui/button": "^0.7.4",
+    "@rescui/colors": "^0.1.4",
+    "@rescui/icons": "^0.10.2",
+    "@rescui/select": "^0.3.4",
     "@rescui/switcher": "^0.3.5",
+    "@rescui/ui-contexts": "^0.3.1",
     "body-scroll-lock": "^4.0.0-beta.0",
-    "next": "^13.0.7",
+    "next": "^13.0.8-canary.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^13.0.7",
-    "@types/node": "^18.11.2",
-    "@types/react": "^18.0.21",
-    "@types/react-dom": "^18.0.6",
+    "@playwright/test": "^1.29.1",
+    "@types/node": "^18.11.17",
+    "@types/react": "^18.0.26",
+    "@types/react-dom": "^18.0.9",
     "@typescript-eslint/eslint-plugin": "^5.40.1",
     "@typescript-eslint/parser": "^5.40.1",
     "eslint": "^8.25.0",
@@ -35,6 +48,9 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "husky": "^8.0.1",
+    "playwright": "^1.29.1",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-preset-env": "^7.8.3",
     "prettier": "^2.7.1",
     "typescript": "^4.8.4"
   },

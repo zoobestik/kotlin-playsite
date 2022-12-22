@@ -16,7 +16,8 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["src/components/*"]
+      "@/*": ["src/*"],
+      "@kotlin-site/*": ["node_modules/@jetbrains/kotlin-web-site-ui/out/components/*"]
     },
     "plugins": [
       {

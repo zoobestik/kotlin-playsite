@@ -15,11 +15,9 @@ export function createConfig() {
   /** @type {import('next').NextConfig} */
   const nextConfig = {
     reactStrictMode: true,
+    transpilePackages: [...transpileKotlinWebSiteUi(), ...transpileRescUI()],
     // compiler: { reactRemoveProperties: true },
     // experimental: { appDir: true },
-    experimental: {
-      transpilePackages: [...transpileKotlinWebSiteUi(), ...transpileRescUI()],
-    },
   };
 
   return withBundleAnalyzer(nextConfig);

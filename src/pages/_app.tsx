@@ -1,5 +1,7 @@
 import type { AppProps, NextWebVitalsMetric } from 'next/app';
 
+import '@rescui/colors/lib/index.css';
+
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
