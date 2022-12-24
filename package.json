@@ -29,7 +29,7 @@
     "@rescui/button": "^0.7.5",
     "@rescui/colors": "^0.1.5",
     "@rescui/switcher": "^0.3.6",
-    "@rescui/ui-contexts": "^0.3.1",
+    "@rescui/ui-contexts": "0.3.1",
     "body-scroll-lock": "^4.0.0-beta.0",
     "next": "^13.0.8-canary.4",
     "react": "^18.2.0",
