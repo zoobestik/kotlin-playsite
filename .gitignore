@@ -2,10 +2,22 @@
 
 .idea
 *.iml
+.vscode
 
 .next
-node_modules
-package-lock.json
-yarn.lock
+.turbo
+next-env.d.ts
+out
 
-*.log
+node_modules
+#package-lock.json
+#yarn.lock
+test-results
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+.env*
+!.env*.example
