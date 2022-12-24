@@ -1,10 +1,11 @@
+import { Platform } from '@/lib/compiler/Platform';
+import { IJVMPlatformSettings } from '@/lib/compiler/PlatformSettings';
 import { CodeArea } from '@/components/CodeArea';
-import { CompilerPlatforms } from '@/components/CodeArea/CompilerPlatforms';
 
 const Pane = () => <></>;
 
-const DEFAULT_COMPILER_OPTIONS = {
-  platform: CompilerPlatforms.JAVA,
+const DEFAULT_COMPILER_OPTIONS: IJVMPlatformSettings = {
+  platform: Platform.JAVA,
   version: '1.7.20',
 };
 

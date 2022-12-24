@@ -1,6 +1,8 @@
 import type { AppProps, NextWebVitalsMetric } from 'next/app';
 import Script from 'next/script';
 
+import '@rescui/colors/lib/index.css';
+
 import '../styles/globals.css';
 
 export function reportWebVitals(metric: NextWebVitalsMetric) {
