@@ -17,6 +17,10 @@ export function createConfig() {
     trailingSlash: true,
     reactStrictMode: true,
     transpilePackages: [...transpileKotlinWebSiteUi(), ...transpileRescUI()],
+    pageExtensions: [
+      'page.tsx',
+      'page.ts' /*,'page.mjs', 'page.jsx', 'page.js'*/,
+    ],
     // compiler: { reactRemoveProperties: true },
     // experimental: { appDir: true },
     eslint: {

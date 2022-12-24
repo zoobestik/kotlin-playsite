@@ -1,0 +1,26 @@
+{
+  "/Creating HTTP APIs with Ktor/01_introduction":
+    "https://ktor.io/docs/creating-http-apis.html",
+  "/Creating a WebSocket Chat with Ktor/01_introduction":
+    "https://ktor.io/docs/creating-web-socket-chat.html",
+  "/Creating a website with Ktor/01_introduction":
+    "https://ktor.io/docs/creating-interactive-website.html",
+  "/Targeting iOS and Android with Kotlin Multiplatform/01_Introduction":
+    "https://kotlinlang.org/docs/mobile/create-first-app.html",
+  "/Introduction to Kotlin Native/01_Introduction":
+    "https://kotlinlang.org/docs/native-app-with-c-and-libcurl.html",
+  "/Building Web Applications with Spring Boot and Kotlin/01_introduction":
+    "https://spring.io/guides/tutorials/spring-boot-kotlin/",
+  "/Building Reactive Spring Boot Applications with Kotlin Coroutines and RSocket/01_introduction":
+    "https://spring.io/guides/tutorials/spring-webflux-kotlin-rsocket/",
+  "/Building Web Applications with React and Kotlin JS/01_Introduction":
+    "https://kotlinlang.org/docs/js-react.html",
+  "/Introduction to Coroutines and Channels/01_Introduction":
+    "https://kotlinlang.org/docs/coroutines-and-channels.html",
+  "/Full Stack Web App with Kotlin Multiplatform/01_Introduction":
+    "https://kotlinlang.org/docs/multiplatform-full-stack-app.html",
+  "/Networking and Data Storage with Kotlin Multiplatfrom Mobile/01_Introduction":
+    "https://kotlinlang.org/docs/multiplatform-mobile-ktor-sqldelight.html",
+  "/Kotlin Native Concurrency/00_Introduction":
+    "https://kotlinlang.org/docs/multiplatform-mobile-concurrency-overview.html"
+}

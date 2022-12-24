@@ -1,7 +1,10 @@
 import type { AppProps, NextWebVitalsMetric } from 'next/app';
 import Script from 'next/script';
 
+import '@rescui/typography/lib/font-jb-sans-auto.css';
 import '@rescui/colors/lib/index.css';
+
+import '@kotlin-site/typography/index.css';
 
 import '../styles/globals.css';
 

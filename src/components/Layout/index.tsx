@@ -1,4 +1,5 @@
 import { ComponentType } from 'react';
+import cn from 'classnames';
 
 import * as process from 'process';
 
@@ -7,24 +8,22 @@ import { useRouter } from 'next/router';
 
 import { ThemeProvider } from '@rescui/ui-contexts';
 
-import { PropsWithClassname, UITheme } from '@/lib/reactTypes';
-
 import Header, { PLAY_TITLE } from '@kotlin-site/header';
 import Footer from '@kotlin-site/footer';
 
-import styles from './styles.module.css';
+import { UITheme } from '@/lib/reactTypes';
 
-export type LayoutChildComponent = ComponentType<PropsWithClassname>;
+import styles from './styles.module.css';
 
 export type FooterProps = {
   theme?: UITheme;
 };
 
 export type LayoutProps = {
-  title?: string;
+  title: string;
   description?: string;
+  component: ComponentType;
   theme?: UITheme;
-  component: LayoutChildComponent;
   footer?: boolean | FooterProps;
 };
 
@@ -38,7 +37,7 @@ export function Layout({
   title,
   description,
   component: Component,
-  theme = 'dark',
+  theme = 'light',
   footer = true,
 }: LayoutProps) {
   const { pathname } = useRouter();
@@ -47,32 +46,37 @@ export function Layout({
     footer && footer !== true ? footer : {};
 
   return (
-    <div className={styles.layout}>
-      <Head>
-        <title>
-          {title || 'Kotlin Playground: Edit, Run, Share Kotlin Code Online'}
-        </title>
-        <meta name="description" content={description || ''} />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <ThemeProvider theme={theme}>
+      <div className={styles.layout}>
+        <Head>
+          <title>{title}</title>
+          <meta name="description" content={description || ''} />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
 
-      <Header
-        currentUrl={pathname}
-        currentTitle={PLAY_TITLE}
-        hasBorder={theme === 'light'}
-        isPlayground
-        hasSearch
-        searchConfig={searchConfig}
-        noScrollClassName={'_no-scroll'}
-      />
+        <Header
+          currentUrl={pathname}
+          currentTitle={PLAY_TITLE}
+          hasBorder={theme === 'light'}
+          isPlayground
+          hasSearch
+          searchConfig={searchConfig}
+          noScrollClassName={'_no-scroll'}
+        />
 
-      <Component className={styles.main} />
+        <main
+          className={cn(styles.main, styles[`main_theme_${theme}`])}
+          data-test="page-content"
+        >
+          <Component />
+        </main>
 
-      {Boolean(footer) && (
-        <ThemeProvider theme={footerTheme || 'dark'}>
-          <Footer className="data-test-global-footer" />
-        </ThemeProvider>
-      )}
-    </div>
+        {Boolean(footer) && (
+          <ThemeProvider theme={footerTheme || 'dark'}>
+            <Footer className="data-test-global-footer" />
+          </ThemeProvider>
+        )}
+      </div>
+    </ThemeProvider>
   );
 }

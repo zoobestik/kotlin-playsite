@@ -7,7 +7,7 @@ import { singletonExists } from '../utils/asserts/common';
 
 // @ToDo: dynamic build pages list
 export function listPages() {
-  return ['/' /*'/404'*/];
+  return ['/', 'hands-on', '/404'];
 }
 
 for (const url of listPages()) {

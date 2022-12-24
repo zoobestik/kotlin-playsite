@@ -1,5 +1,7 @@
 const postcssConfig = {
   plugins: [
+    'postcss-import',
+    'postcss-custom-media',
     'postcss-flexbugs-fixes',
     [
       'postcss-preset-env',
@@ -10,6 +12,7 @@ const postcssConfig = {
         stage: 3,
         features: {
           'custom-properties': true,
+          'nesting-rules': true,
         },
       },
     ],

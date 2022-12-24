@@ -8,3 +8,7 @@
 .main {
     flex: 1 1 auto;
 }
+
+.main_theme_dark {
+    background-color: var(--play-dark-theme-bg);
+}
