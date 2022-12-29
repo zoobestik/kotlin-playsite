@@ -1,7 +1,7 @@
 import { expect, Page, test } from '@playwright/test';
 
 import { checkExternalLink } from '../utils/asserts/links';
-import { assertLinkWorks } from '../utils/asserts/linkWorks';
+import { assertLinkAvailable } from '../utils/asserts/links/available';
 
 function getListItems(page: Page) {
   return page.getByTestId('hands-on-list--link');
@@ -47,7 +47,7 @@ test.describe('HandsOn', () => {
     const links = await getListItems(page).all();
 
     for (const link of links) {
-      await assertLinkWorks(page, link);
+      await assertLinkAvailable(page, link);
     }
   });
 });

@@ -2,7 +2,7 @@ import { expect, Page, test } from '@playwright/test';
 
 import { testByClassSelector } from '../utils/selectors';
 import { inputTextToSearch } from '../utils/interactions/search';
-import { assertLinkWorks } from '../utils/asserts/linkWorks';
+import { assertLinkAvailable } from '../utils/asserts/links/available';
 import { singletonExists } from '../utils/asserts/common';
 
 // @ToDo: dynamic build pages list
@@ -55,7 +55,7 @@ for (const url of listPages()) {
         const links = await getHeader(page).locator('a[href]').all();
 
         for (const link of links) {
-          await assertLinkWorks(page, link);
+          await assertLinkAvailable(page, link);
         }
       });
     });
