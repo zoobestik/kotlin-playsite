@@ -1,5 +1,7 @@
 // @ts-check
 import withBAInitializer from '@next/bundle-analyzer';
+import CssoWebpackPlugin from 'csso-webpack-plugin';
+import CompressionPlugin from 'compression-webpack-plugin';
 
 import {
   transpileKotlinWebSiteUi,
@@ -12,6 +14,7 @@ export function createConfig() {
     enabled: process.env.ANALYZE === 'true',
   });
 
+  /**  @type {import('next').NextConfig} */
   const nextConfig = {
     // basePath: '',
     trailingSlash: true,
@@ -21,10 +24,23 @@ export function createConfig() {
       'page.tsx',
       'page.ts' /*,'page.mjs', 'page.jsx', 'page.js'*/,
     ],
+    experimental: {
+      // appDir: true,
+      nextScriptWorkers: true,
+    },
     // compiler: { reactRemoveProperties: true },
-    // experimental: { appDir: true },
     eslint: {
       dirs: ['src', 'e2e', 'scripts'],
+    },
+    webpack: (config) => {
+      config.plugins.push(new CssoWebpackPlugin.default());
+      config.plugins.push(
+        new CompressionPlugin({
+          test: /\.js$|\.css$|\.html$/,
+        }),
+      );
+
+      return { ...config };
     },
   };
 
