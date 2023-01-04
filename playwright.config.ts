@@ -2,7 +2,7 @@ import { env } from 'process';
 import type { PlaywrightTestConfig, Project } from '@playwright/test';
 import { devices } from '@playwright/test';
 
-const isDevMode = Boolean(env.E2E_DEV === 'true');
+const isDevMode = Boolean(env.E2E === 'dev');
 
 const DEV_PROJECTS: Project[] = [
   {

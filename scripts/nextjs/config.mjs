@@ -1,4 +1,6 @@
 // @ts-check
+import { env } from 'process';
+
 import withBAInitializer from '@next/bundle-analyzer';
 import CssoWebpackPlugin from 'csso-webpack-plugin';
 import CompressionPlugin from 'compression-webpack-plugin';
@@ -7,6 +9,9 @@ import {
   transpileKotlinWebSiteUi,
   transpileRescUI,
 } from './transpilePackages.mjs';
+
+const isDevMode = process.env.NODE_ENV === 'development';
+const isE2EMode = !env.E2E;
 
 /**  @type {import('next').NextConfig} */
 export function createConfig() {
@@ -27,8 +32,19 @@ export function createConfig() {
     experimental: {
       // appDir: true,
       nextScriptWorkers: true,
+      // optimizeCss: {
+      //   pruneSource: true,
+      //   mergeStylesheets: true,
+      // },
+      newNextLinkBehavior: true,
     },
-    // compiler: { reactRemoveProperties: true },
+    compiler: {
+      // The regexes defined here are processed in Rust so the syntax is different from
+      // JavaScript `RegExp`s. See https://docs.rs/regex.
+      reactRemoveProperties: !(isDevMode || isE2EMode)
+        ? { properties: ['^data-test.*$'] }
+        : false,
+    },
     eslint: {
       dirs: ['src', 'e2e', 'scripts'],
     },
