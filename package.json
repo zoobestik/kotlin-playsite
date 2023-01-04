@@ -3,7 +3,7 @@
   "version": "1.0.0-alpha.1",
   "private": true,
   "engines": {
-    "npm": ">=9.0.0",
+    "npm": ">=8.0.0",
     "node": ">=18.0.0"
   },
   "browserslist": [
@@ -25,7 +25,7 @@
     "start": "next start",
     "test": "npm run lint && npm run test:e2e",
     "test:e2e": "export E2E=dev && playwright test --grep-invert @release",
-    "test:e2e:prod": "export E2E=prod && next build && playwright test --reporter html"
+    "test:e2e:release": "export E2E=prod && next build && playwright test --reporter html"
   },
   "dependencies": {
     "@jetbrains/kotlin-web-site-ui": "^4.4.6",

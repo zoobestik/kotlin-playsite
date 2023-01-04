@@ -43,8 +43,8 @@ const config: PlaywrightTestConfig = {
     testIdAttribute: 'data-test',
     headless: !isDevMode,
     ignoreHTTPSErrors: true,
-    trace: 'on-first-retry',
-    video: 'on-first-retry',
+    trace: isDevMode ? 'on-first-retry' : 'on',
+    video: isDevMode ? 'on-first-retry' : 'on',
   },
   projects,
 };
