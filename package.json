@@ -13,7 +13,7 @@
   ],
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint"
+      "pre-commit": "lint-staged"
     }
   },
   "scripts": {
@@ -22,6 +22,7 @@
     "build": "next build",
     "export": "next build && next export",
     "lint": "next lint --fix",
+    "prepare": "husky install",
     "start": "next start",
     "test": "npm run lint && npm run test:e2e",
     "test:e2e": "export E2E=dev && playwright test --grep-invert @release",
@@ -60,6 +61,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "husky": "^8.0.2",
+    "lint-staged": "^13.1.0",
     "playwright": "^1.29.1",
     "postcss-custom-media": "^9.0.1",
     "postcss-flexbugs-fixes": "^5.0.2",
