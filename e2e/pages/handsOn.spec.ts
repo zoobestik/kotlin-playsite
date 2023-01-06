@@ -1,7 +1,7 @@
 import { expect, Page, test } from '@playwright/test';
 
 import { checkExternalLink } from '../utils/asserts/links';
-import { assertLinkAvailable } from '../utils/asserts/links/available';
+import { assertLinksAvailable } from '../utils/asserts/links/available';
 
 function getListItems(page: Page) {
   return page.getByTestId('hands-on-list--link');
@@ -30,6 +30,7 @@ test.describe('HandsOn', () => {
     await expect(handsOnList).toHaveCount(12);
 
     const links = await handsOnList.all();
+
     await Promise.all(
       links.map(async (link) => {
         await checkExternalLink(link);
@@ -44,10 +45,6 @@ test.describe('HandsOn', () => {
   });
 
   test('list links work @release', async ({ page }) => {
-    const links = await getListItems(page).all();
-
-    for (const link of links) {
-      await assertLinkAvailable(page, link);
-    }
+    await assertLinksAvailable(page, getListItems(page));
   });
 });
