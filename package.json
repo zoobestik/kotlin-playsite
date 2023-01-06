@@ -25,6 +25,7 @@
     "prepare": "husky install",
     "start": "next start",
     "test": "npm run lint && npm run test:e2e",
+    "test:release": "npm run lint && npm run test:e2e:release",
     "test:e2e": "export E2E=dev && playwright test --grep-invert @release",
     "test:e2e:release": "export E2E=prod && next build && playwright test --reporter html"
   },
@@ -56,6 +57,7 @@
     "cross-import": "^1.5.0",
     "csso": "^5.0.5",
     "csso-webpack-plugin": "^2.0.0-beta.3",
+    "dotenv": "^16.0.3",
     "eslint": "^8.30.0",
     "eslint-config-next": "^13.1.1",
     "eslint-config-prettier": "^8.5.0",

@@ -12,14 +12,17 @@ concurrency:
 jobs:
   integration:
     name: Run end-to-end tests
-    environment: testing
     runs-on: ubuntu-latest
     timeout-minutes: 25
 
     env:
-      NEXT_PUBLIC_SEARCH_ALGOLIA_ID: ${{ secrets.NEXT_PUBLIC_SEARCH_ALGOLIA_ID }}
-      NEXT_PUBLIC_SEARCH_ALGOLIA_API_KEY: ${{ secrets.NEXT_PUBLIC_SEARCH_ALGOLIA_API_KEY }}
-      NEXT_PUBLIC_SEARCH_ALGOLIA_INDEX_NAME: ${{ secrets.NEXT_PUBLIC_SEARCH_ALGOLIA_INDEX_NAME }}
+      # Slow agent for github actions
+      E2E_LOWRES_AGENT: 'true'
+
+      # Set .env.example
+      NEXT_PUBLIC_SEARCH_ALGOLIA_ID: ${{ secrets.TEST_PUBLIC_SEARCH_ALGOLIA_ID }}
+      NEXT_PUBLIC_SEARCH_ALGOLIA_API_KEY: ${{ secrets.TEST_PUBLIC_SEARCH_ALGOLIA_API_KEY }}
+      NEXT_PUBLIC_SEARCH_ALGOLIA_INDEX_NAME: ${{ secrets.TEST_PUBLIC_SEARCH_ALGOLIA_INDEX_NAME }}
 
     steps:
       # prepare core binaries
@@ -64,8 +67,10 @@ jobs:
         run: npm run test:e2e:release
 
       - uses: actions/upload-artifact@v3
-        if: always()
+        if: failure()
         with:
           name: playwright-report
-          path: playwright-report/
-          retention-days: 30
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 5
