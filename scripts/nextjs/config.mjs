@@ -10,11 +10,15 @@ import {
   transpileRescUI,
 } from './transpilePackages.mjs';
 
+import redirects from './redirects.mjs';
+
 const isDevMode = process.env.NODE_ENV === 'development';
 const isE2EMode = !env.E2E;
 
 /**  @type {import('next').NextConfig} */
-export function createConfig() {
+export function createConfig(phase) {
+  const isExport = phase === 'phase-export';
+
   const withBundleAnalyzer = withBAInitializer({
     enabled: process.env.ANALYZE === 'true',
   });
@@ -58,6 +62,7 @@ export function createConfig() {
 
       return { ...config };
     },
+    redirects: !isExport ? redirects : null,
   };
 
   return withBundleAnalyzer(nextConfig);

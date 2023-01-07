@@ -16,10 +16,11 @@ Or, for generate static site:
 ```bash
 npm run export
 ```
-
-List of required environments in [`.env.example`](./.env.example).
-
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+### Additional features
+ * List of required environments in [`.env.example`](./.env.example).
+ * Add server redirects file into `src/pages/*/_redirects.mjs` for [custom redirects](./src/pages/hands-on/_redirects.mjs).
 
 ## Tests
 
