@@ -1,16 +1,15 @@
+import { join } from 'path';
+import { cwd } from 'process';
+
 import { expect, Page, test } from '@playwright/test';
 
-import { testByClassSelector } from '../utils/selectors';
-import { inputTextToSearch } from '../utils/interactions/search';
-import { assertLinksAvailable } from '../utils/asserts/links/available';
-import { singletonExists } from '../utils/asserts/common';
+import { listPages } from '@/utils/specs/pages';
+import { testByClassSelector } from '@/utils/specs/selectors';
+import { inputTextToSearch } from '@/utils/specs/interactions/search';
+import { assertLinksAvailable } from '@/utils/specs/asserts/links/available';
+import { singletonExists } from '@/utils/specs/asserts/common';
 
-// @ToDo: dynamic build pages list
-export function listPages() {
-  return ['/', 'hands-on', '/404'];
-}
-
-for (const url of listPages()) {
+for (const url of listPages(join(cwd(), 'src', 'pages'))) {
   test.describe(url, () => {
     test.beforeEach(async ({ page }) => {
       await page.goto(url);

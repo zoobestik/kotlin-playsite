@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { PropsWithClassname } from '@/lib/reactTypes';
+import { PropsWithClassname } from '@/utils/react';
 
 import Button from '@rescui/button';
 import { ArrowTopRightIcon } from '@rescui/icons';

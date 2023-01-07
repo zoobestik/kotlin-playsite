@@ -1,4 +1,5 @@
 import { join } from 'path';
+import { cwd } from 'process';
 import { readdirSync } from 'fs';
 
 import packageJson from '../../package-lock.json' assert { type: 'json' };
@@ -17,7 +18,7 @@ const KWS_UI_PATH = 'out/components';
 export function transpileKotlinWebSiteUi() {
   const modulePrefix = join(KWS_UI_PACKAGE, KWS_UI_PATH);
 
-  return listDirs(join(process.cwd(), 'node_modules', modulePrefix)).map(
+  return listDirs(join(cwd(), 'node_modules', modulePrefix)).map(
     (name) => `${modulePrefix}/${name}`,
   );
 }

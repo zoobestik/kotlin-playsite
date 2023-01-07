@@ -1,5 +1,5 @@
-import { Platform } from '@/lib/compiler/Platform';
-import { IJVMPlatformSettings } from '@/lib/compiler/PlatformSettings';
+import { Platform } from '@/utils/compiler/Platform';
+import { IJVMPlatformSettings } from '@/utils/compiler/PlatformSettings';
 import { CodeArea } from '@/components/CodeArea';
 
 const Pane = () => <></>;

@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { Layout } from '@/components/Layout';
 import type { Cards } from '@/pages/hands-on/list/data/cards';
-import { HandsOnPage } from '@/pages/hands-on/page';
+import { HandsOnPage } from '@/pages/hands-on/handsOnLayout';
 
 type StaticPropsProps = {
   cards: Cards;

@@ -11,7 +11,7 @@ import { ThemeProvider } from '@rescui/ui-contexts';
 import Header, { PLAY_TITLE } from '@kotlin-site/header';
 import Footer from '@kotlin-site/footer';
 
-import { UITheme } from '@/lib/reactTypes';
+import { UITheme } from '@/utils/react';
 
 import styles from './styles.module.css';
 

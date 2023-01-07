@@ -1,8 +1,8 @@
 import { createContext, useContext } from 'react';
 
-import { PlatformSettings } from '@/lib/compiler/PlatformSettings';
-import { KotlinVersion } from '@/lib/compiler/KotlinVersion';
-import { Platform } from '@/lib/compiler/Platform';
+import { PlatformSettings } from '@/utils/compiler/PlatformSettings';
+import { KotlinVersion } from '@/utils/compiler/KotlinVersion';
+import { Platform } from '@/utils/compiler/Platform';
 
 export interface ICodeIDEContext {
   settings: PlatformSettings;

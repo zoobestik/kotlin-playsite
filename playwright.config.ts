@@ -1,7 +1,10 @@
 import { env } from 'process';
 import { config as dotenv } from 'dotenv';
+
 import type { PlaywrightTestConfig } from '@playwright/test';
 import { devices } from '@playwright/test';
+
+import { isKeyOfObject } from '@/utils/common';
 
 dotenv({ path: `.env.local`, override: true });
 
@@ -16,24 +19,15 @@ const NORMAL_PROJECTS_LIST = [
 
 const PROJECTS_LIST = {
   SHORT: [
-    'iPhone SE', // Mobile
+    'iPhone 8', // Mobile
     'Desktop Chrome', // Desktop
   ],
-
   NORMAL: NORMAL_PROJECTS_LIST,
-
   LONG: [...NORMAL_PROJECTS_LIST, 'Desktop Firefox', 'Desktop Safari'],
 };
 
 const isDevMode = Boolean(env.E2E === 'dev');
 const isLowResMode = Boolean(env.E2E_LOWRES_AGENT === 'true');
-
-export function isKeyOfObject<T extends object>(
-  key: string | number | symbol,
-  obj: T,
-): key is keyof T {
-  return key in obj;
-}
 
 function getProjects() {
   const { E2E_PROJECT_LIST } = env;
@@ -46,6 +40,7 @@ function getProjects() {
     const list = Object.keys(PROJECTS_LIST)
       .map((s) => `'${s.toLowerCase()}'`)
       .join(' or ');
+
     throw Error(`E2E_PROJECT_LIST should be ${list}`);
   }
 

@@ -1,10 +1,12 @@
-import { constants as FS_CONSTANTS, promises as fs } from 'fs';
+import { cwd } from 'process';
 import { join } from 'path';
+import { constants as FS_CONSTANTS, promises as fs } from 'fs';
+
+const pagesDir = join(cwd(), 'src', 'pages');
 
 async function getPagesRedirect() {
   console.log('Collect redirects from pages...');
 
-  const pagesDir = join(process.cwd(), 'src', 'pages');
   const pages = await fs.readdir(pagesDir, { withFileTypes: true });
 
   const list = await Promise.all(

@@ -1,4 +1,4 @@
-import { PlatformSettings } from '@/lib/compiler/PlatformSettings';
+import { PlatformSettings } from '@/utils/compiler/PlatformSettings';
 
 import { IDisplayOptions } from './IDisplayOptions';
 

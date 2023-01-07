@@ -1,7 +1,7 @@
 import { expect, Page, test } from '@playwright/test';
 
-import { checkExternalLink } from '../utils/asserts/links';
-import { assertLinksAvailable } from '../utils/asserts/links/available';
+import { checkExternalLink } from '@/utils/specs/asserts/links';
+import { assertLinksAvailable } from '@/utils/specs/asserts/links/available';
 
 function getListItems(page: Page) {
   return page.getByTestId('hands-on-list--link');

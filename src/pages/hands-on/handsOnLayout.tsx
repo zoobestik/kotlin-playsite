@@ -6,7 +6,7 @@ import { useTextStyles } from '@kotlin-site/typography';
 import { Cards } from '@/pages/hands-on/list/data/cards';
 import { HandsOnList } from '@/pages/hands-on/list';
 
-import styles from './page.module.css';
+import styles from './handsOnLayout.module.css';
 
 export type HandsOnListProps = {
   list: Cards;
