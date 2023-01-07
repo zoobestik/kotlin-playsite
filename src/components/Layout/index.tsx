@@ -24,6 +24,7 @@ export type LayoutProps = {
   description?: string;
   component: ComponentType;
   theme?: UITheme;
+  sticky?: boolean;
   footer?: boolean | FooterProps;
 };
 
@@ -38,6 +39,7 @@ export function Layout({
   description,
   component: Component,
   theme = 'light',
+  sticky = true,
   footer = true,
 }: LayoutProps) {
   const { pathname } = useRouter();
@@ -55,6 +57,7 @@ export function Layout({
         </Head>
 
         <Header
+          className={cn({ [styles.headerSticky]: Boolean(sticky) })}
           currentUrl={pathname}
           currentTitle={PLAY_TITLE}
           hasBorder={theme === 'light'}
