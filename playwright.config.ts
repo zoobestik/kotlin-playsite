@@ -1,8 +1,7 @@
 import { env } from 'process';
 import { config as dotenv } from 'dotenv';
 
-import type { PlaywrightTestConfig } from '@playwright/test';
-import { devices } from '@playwright/test';
+import { devices, PlaywrightTestConfig } from '@playwright/test';
 
 import { isKeyOfObject } from '@/utils/common';
 
@@ -26,14 +25,14 @@ const PROJECTS_LIST = {
   LONG: [...NORMAL_PROJECTS_LIST, 'Desktop Firefox', 'Desktop Safari'],
 };
 
-const isDevMode = Boolean(env.E2E === 'dev');
-const isLowResMode = Boolean(env.E2E_LOWRES_AGENT === 'true');
+const isDevMode = Boolean(env.TEST_MODE === 'dev');
+const isLowResMode = Boolean(env.TEST_LOWRES_AGENT === 'true');
 
 function getProjects() {
-  const { E2E_PROJECT_LIST } = env;
+  const { TEST_PROJECT_LIST } = env;
 
-  if (E2E_PROJECT_LIST) {
-    const key = E2E_PROJECT_LIST.toUpperCase();
+  if (TEST_PROJECT_LIST) {
+    const key = TEST_PROJECT_LIST.toUpperCase();
 
     if (isKeyOfObject(key, PROJECTS_LIST)) return PROJECTS_LIST[key];
 
@@ -41,26 +40,35 @@ function getProjects() {
       .map((s) => `'${s.toLowerCase()}'`)
       .join(' or ');
 
-    throw Error(`E2E_PROJECT_LIST should be ${list}`);
+    throw Error(`TEST_PROJECT_LIST should be ${list}`);
   }
 
-  // @TODO: Variable `E2E_LOWRES_AGENT` should disable specific test
+  // @TODO: Variable `TEST_LOWRES_AGENT` should disable specific test
   if (isDevMode || isLowResMode) return PROJECTS_LIST.SHORT;
 
   return PROJECTS_LIST.NORMAL;
 }
 
 function getHeadlessMode() {
-  const { E2E_HEADLESS_MODE } = env;
+  const { TEST_HEADLESS_MODE } = env;
 
-  if (E2E_HEADLESS_MODE) {
-    return E2E_HEADLESS_MODE === 'true';
+  if (TEST_HEADLESS_MODE) {
+    return TEST_HEADLESS_MODE === 'true';
   }
 
   return !isDevMode;
 }
 
+const snapshotPathTemplate =
+  '{testFileDir}/__screenshots__/{testFileName}/{platform}/{projectName}/{testName}-{arg}{ext}';
+
+/**
+ * See https://playwright.dev/docs/test-configuration.
+ */
 const config: PlaywrightTestConfig = {
+  testMatch: /.*\.e2e\.tsx?$/,
+  snapshotPathTemplate,
+
   timeout: isLowResMode ? 120000 : 60000,
   forbidOnly: !isDevMode,
   reporter: 'list',

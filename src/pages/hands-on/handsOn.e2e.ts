@@ -44,7 +44,7 @@ test.describe('HandsOn', () => {
     );
   });
 
-  test('list links work @release', async ({ page }) => {
+  test('list links work @slow', async ({ page }) => {
     await assertLinksAvailable(page, getListItems(page));
   });
 });

@@ -13,7 +13,7 @@ import {
 import redirects from './redirects.mjs';
 
 const isDevMode = process.env.NODE_ENV === 'development';
-const isE2EMode = !env.E2E;
+const isTestMode = Boolean(env.TEST_MODE);
 
 /**  @type {import('next').NextConfig} */
 export function createConfig(phase) {
@@ -45,7 +45,7 @@ export function createConfig(phase) {
     compiler: {
       // The regexes defined here are processed in Rust so the syntax is different from
       // JavaScript `RegExp`s. See https://docs.rs/regex.
-      reactRemoveProperties: !(isDevMode || isE2EMode)
+      reactRemoveProperties: !(isDevMode || isTestMode)
         ? { properties: ['^data-test.*$'] }
         : false,
     },
@@ -62,7 +62,7 @@ export function createConfig(phase) {
 
       return { ...config };
     },
-    redirects: !isExport ? redirects : null,
+    redirects: !isExport ? redirects : undefined,
   };
 
   return withBundleAnalyzer(nextConfig);

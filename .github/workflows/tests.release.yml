@@ -1,4 +1,4 @@
-name: "Tests: E2E: release"
+name: "Tests: release bundle"
 on:
   push:
     branches:
@@ -17,7 +17,7 @@ jobs:
 
     env:
       # Slow agent for github actions
-      E2E_LOWRES_AGENT: 'true'
+      TEST_LOWRES_AGENT: 'true'
 
       # Set .env.example
       NEXT_PUBLIC_SEARCH_ALGOLIA_ID: ${{ secrets.TEST_PUBLIC_SEARCH_ALGOLIA_ID }}
@@ -63,8 +63,8 @@ jobs:
         run: npx playwright install --with-deps
 
       # run tests
-      - name: Run release e2e test
-        run: npm run test:e2e:release
+      - name: Run tests
+        run: npm run test:release
 
       - uses: actions/upload-artifact@v3
         if: failure()

@@ -1,3 +1,7 @@
+@import '@rescui/typography/lib/font-jb-sans-auto.css';
+@import '@rescui/colors/lib/index.css';
+@import '@jetbrains/kotlin-web-site-ui/out/components/typography/index.css';
+
 :root {
     --play-dark-theme-bg: #1b1b1b;
 }

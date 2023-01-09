@@ -24,10 +24,16 @@
     "lint": "next lint --fix",
     "prepare": "husky install",
     "start": "next start",
-    "test": "npm run lint && npm run test:e2e",
-    "test:release": "npm run lint && npm run test:e2e:release",
-    "test:e2e": "export E2E=dev && playwright test --grep-invert @release",
-    "test:e2e:release": "export E2E=prod && next build && playwright test --reporter html"
+    "test": "next lint && npm run test:ct && npm run test:e2e",
+    "test:release": "next lint && npm run test:ct:release && npm run test:e2e:release",
+    "test:e2e": "export TEST_MODE=dev && playwright test --grep-invert @slow",
+    "test:e2e:release": "export TEST_MODE=prod && next build && playwright test --reporter html",
+    "test:ct": "npm run test:e2e -- -c playwright-ct.config.ts",
+    "test:ct:release": "npm run test:e2e:release -- -c playwright-ct.config.ts",
+    "test:screens": "npm run test:ct:screens && npm run test:e2e:screens",
+    "test:e2e:screens": "npm run test:e2e:release -- --update-snapshots",
+    "test:ct:screens": "npm run test:ct:release -- --update-snapshots",
+    "clean": "rm -rf .next playwright/.cache"
   },
   "dependencies": {
     "@jetbrains/kotlin-web-site-ui": "^4.4.6",
@@ -47,6 +53,7 @@
   "devDependencies": {
     "@builder.io/partytown": "^0.7.3",
     "@next/bundle-analyzer": "^13.1.1",
+    "@playwright/experimental-ct-react": "^1.29.2",
     "@playwright/test": "^1.29.1",
     "@types/node": "^18.11.18",
     "@types/react": "^18.0.26",
@@ -54,7 +61,6 @@
     "@typescript-eslint/eslint-plugin": "^5.47.1",
     "@typescript-eslint/parser": "^5.47.1",
     "compression-webpack-plugin": "^10.0.0",
-    "cross-import": "^1.5.0",
     "csso": "^5.0.5",
     "csso-webpack-plugin": "^2.0.0-beta.3",
     "dotenv": "^16.0.3",
@@ -70,7 +76,9 @@
     "postcss-import": "^15.1.0",
     "postcss-preset-env": "^7.8.3",
     "prettier": "^2.8.1",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.4",
+    "vite-tsconfig-paths": "^4.0.3",
+    "vitest": "^0.26.3"
   },
   "overrides": {
     "csso": "^5.0.5",

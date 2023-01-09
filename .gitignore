@@ -4,6 +4,7 @@
 *.iml
 .vscode
 
+.swc
 .next
 .turbo
 next-env.d.ts
@@ -15,6 +16,9 @@ node_modules
 
 test-results
 playwright-report
+playwright/.cache
+#**/*.spec.*-snapshots/*.png
+#!**/*.spec.*-snapshots/*-linux.png
 
 npm-debug.log*
 yarn-debug.log*
