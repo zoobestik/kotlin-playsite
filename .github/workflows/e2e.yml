@@ -12,7 +12,16 @@ concurrency:
 jobs:
   integration:
     name: Run end-to-end tests
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+        - os: macos-latest
+          PROJECT_LIST: webkit
+
+        - os: ubuntu-latest
+          PROJECT_LIST: non_webkit
+
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 25
 
     env:
@@ -29,6 +38,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: lts/*
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
 
       - name: Install dependencies
         run: npm ci
@@ -44,7 +55,11 @@ jobs:
         uses: actions/cache@v3
         id: playwright-cache
         with:
-          path: ~/.cache/ms-playwright
+          path: |
+            **/node_modules/playwright
+            ~/.cache/ms-playwright
+            ~/Library/Caches/ms-playwright
+            %USERPROFILE%\AppData\Local\ms-playwright
           key: ${{ runner.os }}-${{ runner.arch }}-cache-playwright-${{ steps.playwright-version.outputs.version }}
 
       - name: Playwright info
@@ -61,7 +76,7 @@ jobs:
 
       # run tests
       - name: Run tests
-        run: npm run test:release
+        run: TEST_PROJECT_LIST="${{matrix.PROJECT_LIST}}" npm run test:release
 
       - uses: actions/upload-artifact@v3
         if: failure()

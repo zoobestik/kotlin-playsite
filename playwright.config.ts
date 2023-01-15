@@ -7,22 +7,31 @@ import { isKeyOfObject } from '@/utils/common';
 
 dotenv({ path: `.env.local`, override: true });
 
-const NORMAL_PROJECTS_LIST = [
+function isWebkit(name: string) {
+  return (
+    name.includes('iPhone') || name.includes('iPad') || name.includes('Safari')
+  );
+}
+
+const RESOLUTIONS_COVER_DEVICES = [
   'iPhone SE', // MS
   'iPhone 8 Plus', // MM
   'Galaxy Tab S4', // TS
   'iPad Pro 11', // TM
   'iPad (gen 7) landscape', // TM
   'Desktop Chrome', // TM
+  'Desktop Firefox',
+  'Desktop Safari',
 ];
 
 const PROJECTS_LIST = {
-  SHORT: [
+  ALL: RESOLUTIONS_COVER_DEVICES,
+  DEV: [
     'iPhone 8', // Mobile
-    'Desktop Chrome', // Desktop
+    'Desktop Safari', // Desktop
   ],
-  NORMAL: NORMAL_PROJECTS_LIST,
-  LONG: [...NORMAL_PROJECTS_LIST, 'Desktop Firefox', 'Desktop Safari'],
+  WEBKIT: RESOLUTIONS_COVER_DEVICES.filter(isWebkit),
+  NON_WEBKIT: RESOLUTIONS_COVER_DEVICES.filter((name) => !isWebkit(name)),
 };
 
 const isDevMode = Boolean(env.TEST_MODE === 'dev');
@@ -42,9 +51,9 @@ function getProjects() {
     throw Error(`TEST_PROJECT_LIST should be ${list}`);
   }
 
-  if (isDevMode) return PROJECTS_LIST.SHORT;
+  if (isDevMode) return PROJECTS_LIST.DEV;
 
-  return PROJECTS_LIST.NORMAL;
+  return PROJECTS_LIST.ALL;
 }
 
 function getHeadlessMode() {

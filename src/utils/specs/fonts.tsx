@@ -1,10 +1,8 @@
-import { Locator } from '@playwright/test';
+import { Page } from '@playwright/test';
 
 const COMMON_FONTS_LIST = ['JetBrains Sans', 'Inter'];
 
-export async function waitFontsReady(component: Locator, fonts?: string[]) {
-  const page = component.page();
-
+export async function waitFontsReady(page: Page, fonts?: string[]) {
   await page.evaluateHandle('document.fonts.ready');
 
   await Promise.all(
