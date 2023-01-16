@@ -9,7 +9,7 @@ function getListItems(page: Page) {
 
 test.describe('HandsOn', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/hands-on/');
+    await page.goto('/hands-on/', { waitUntil: 'domcontentloaded' });
   });
 
   test('initial state elements', async ({ page }) => {

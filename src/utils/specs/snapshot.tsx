@@ -6,5 +6,8 @@ export async function checkComponentSnapshot(
   filename: string | string[],
 ) {
   await waitFontsReady(component);
-  await expect.soft(await component.screenshot()).toMatchSnapshot(filename);
+  await expect(await component.screenshot()).toMatchSnapshot(filename, {
+    // @ts-expect-error Argument to type
+    _comparator: 'ssim-cie94',
+  });
 }

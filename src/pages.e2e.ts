@@ -9,54 +9,47 @@ import { inputTextToSearch } from '@/utils/specs/interactions/search';
 import { assertLinksAvailable } from '@/utils/specs/asserts/links/available';
 import { singletonExists } from '@/utils/specs/asserts/common';
 
+function getFooter(page: Page) {
+  return page.locator(testByClassSelector('global-footer'));
+}
+
 test.describe('All pages layout', () => {
   for (const url of listPages(join(cwd(), 'src', 'pages'))) {
     test.describe(url, () => {
       test.beforeEach(async ({ page }) => {
-        await page.goto(url);
+        await page.goto(url, { waitUntil: 'domcontentloaded' });
       });
 
-      test.describe('Header', () => {
-        test('exists', async ({ page }) => {
-          await singletonExists(
-            page.getByTestId('header'),
-            'should have Header',
-          );
-        });
-
-        test('test search environment', async ({ page }) => {
-          await inputTextToSearch(page, 'ranges');
-
-          const quickSearchResults = expect(
-            page.getByTestId('quick-search-results'),
-            'should show quick search result',
-          );
-
-          await quickSearchResults.toBeVisible();
-
-          const RESULT_TITLES = [
-            'Basic syntax: Ranges',
-            'Ranges and progressions: Range',
-          ];
-
-          await Promise.all(
-            RESULT_TITLES.map((text) => quickSearchResults.toContainText(text)),
-          );
-        });
+      test('Header: exists', async ({ page }) => {
+        await singletonExists(page.getByTestId('header'), 'should have Header');
       });
 
-      test.describe('Footer', () => {
-        function getHeader(page: Page) {
-          return page.locator(testByClassSelector('global-footer'));
-        }
+      test('Header: test search environment', async ({ page }) => {
+        await inputTextToSearch(page, 'ranges');
 
-        test('exists', async ({ page }) => {
-          await singletonExists(getHeader(page), 'should have Footer');
-        });
+        const quickSearchResults = expect(
+          page.getByTestId('quick-search-results'),
+          'should show quick search result',
+        );
 
-        test('links work @slow', async ({ page }) => {
-          await assertLinksAvailable(page, getHeader(page).locator('a[href]'));
-        });
+        await quickSearchResults.toBeVisible();
+
+        const RESULT_TITLES = [
+          'Basic syntax: Ranges',
+          'Ranges and progressions: Range',
+        ];
+
+        await Promise.all(
+          RESULT_TITLES.map((text) => quickSearchResults.toContainText(text)),
+        );
+      });
+
+      test('Footer: exists', async ({ page }) => {
+        await singletonExists(getFooter(page), 'should have Footer');
+      });
+
+      test('Footer: links work @slow', async ({ page }) => {
+        await assertLinksAvailable(page, getFooter(page).locator('a[href]'));
       });
     });
   }
