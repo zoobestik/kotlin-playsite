@@ -1,6 +1,8 @@
 import { expect, test } from '@playwright/experimental-ct-react';
 import { LoremSize, text } from '@/utils/specs/lorem';
 import { assertClassContains } from '@/utils/specs/asserts/common';
+import { checkComponentSnapshot } from '@/utils/specs/snapshot';
+
 import { HandsOnList } from './index';
 
 function getCardsList() {
@@ -55,7 +57,5 @@ test('render', async ({ mount }) => {
   }
 
   await items.first().hover();
-  await expect
-    .soft(await component.screenshot())
-    .toMatchSnapshot('initial.png');
+  await checkComponentSnapshot(component, 'initial.png');
 });
