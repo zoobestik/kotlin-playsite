@@ -22,7 +22,7 @@ function fixExceptionUrl(page: Page, uri: string) {
   const browser = page.context().browser();
   const isWebkit = browser && browser.browserType().name() === 'webkit';
 
-  const url = new URL(uri);
+  const url = new URL(uri, page.url());
 
   if (isWebkit && url.hostname in HTTP_CODE_308_DOMAIN_LIST) {
     url.hostname = HTTP_CODE_308_DOMAIN_LIST[url.hostname];
@@ -31,37 +31,42 @@ function fixExceptionUrl(page: Page, uri: string) {
   return url.toString();
 }
 
-async function assertAvailable<T extends Page, K extends ExternalLink>(
-  page: T,
-  link: K,
+type GetResponseOptions = {
+  originalUrl: string;
+  page: Page;
+};
+
+async function assertAvailable(
+  link: ExternalLink,
   options: AvailableOptions,
   getResponse: (
-    originalUrl: string,
+    options: GetResponseOptions,
   ) => Promise<[Response, () => Promise<void> | null | undefined]>,
 ) {
   const linkUrl = await link.getAttribute('href');
   if (!linkUrl) throw new Error('Link is empty');
 
-  const normalizeUrl = fixExceptionUrl(page, new URL(linkUrl).toString());
+  const page = link.page();
 
-  const [response, finalize] = await getResponse(normalizeUrl);
+  const originalUrl = fixExceptionUrl(page, linkUrl);
 
-  await expect(response.url()).toBe(normalizeUrl);
+  const [response, finalize] = await getResponse({ originalUrl, page });
+
+  await expect(response.url()).toBe(originalUrl);
 
   await expect(
     options.strict ? OK_CODES : SOFT_CODES_CHECK,
-    `http code for ${normalizeUrl} - ${response.status()}`,
+    `http code for ${originalUrl} - ${response.status()}`,
   ).toContain(response.status());
 
   if (finalize) await finalize();
 }
 
 export function assertAvailableBlank(
-  page: Page,
   link: ExternalLink,
   options: AvailableOptions,
 ) {
-  return assertAvailable(page, link, options, async (originalUrl) => {
+  return assertAvailable(link, options, async ({ originalUrl, page }) => {
     const [response, newPage] = await Promise.all([
       page.context().waitForEvent('response', {
         predicate: (page) => page.url() === originalUrl,
@@ -75,11 +80,10 @@ export function assertAvailableBlank(
 }
 
 export function assertAvailableInline(
-  page: Page,
   link: ExternalLink,
   options: AvailableOptions,
 ) {
-  return assertAvailable(page, link, options, async (originalUrl) => {
+  return assertAvailable(link, options, async ({ originalUrl, page }) => {
     const currentUrl = page.url();
 
     const [response] = await Promise.all([
@@ -98,23 +102,21 @@ export function assertAvailableInline(
 }
 
 export async function assertLinkAvailable(
-  page: Page,
   link: ExternalLink,
   options?: AvailableOptions,
 ) {
   const attribute = await link.getAttribute('target');
   const isBlank = attribute === '_blank';
   const asserTester = isBlank ? assertAvailableBlank : assertAvailableInline;
-  await asserTester(page, link, options || {});
+  await asserTester(link, options || {});
   return;
 }
 
 export async function assertLinksAvailable(
-  page: Page,
   container: Locator,
   options?: AvailableOptions,
 ) {
   for (const link of await container.all()) {
-    await assertLinkAvailable(page, link, options);
+    await assertLinkAvailable(link, options);
   }
 }

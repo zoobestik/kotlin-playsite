@@ -1,0 +1,30 @@
+@import "@jetbrains/kotlin-web-site-ui/out/components/breakpoints/media.pcss";
+
+.layout {
+    display: flex;
+
+    @media (--ktl-mm) {
+        flex-direction: column-reverse;
+    }
+}
+
+.layout::before {
+    display: block;
+    content: '';
+    background: url("./icon-404.svg") no-repeat;
+    height: 256px;
+    width: 256px;
+
+    margin-right: 40px;
+
+    @media (--ktl-mm) {
+        height: 100px;
+        width: 100px;
+        margin-top: 50px;
+    }
+}
+
+.para {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}

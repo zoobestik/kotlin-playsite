@@ -49,7 +49,7 @@ test.describe('All pages layout', () => {
       });
 
       test('Footer: links work @slow', async ({ page }) => {
-        await assertLinksAvailable(page, getFooter(page).locator('a[href]'));
+        await assertLinksAvailable(getFooter(page).locator('a[href]'));
       });
     });
   }
