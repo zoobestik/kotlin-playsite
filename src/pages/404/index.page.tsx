@@ -1,15 +1,15 @@
-import Link from 'next/link';
 import { Layout } from '@/components/Layout';
+import { Page404Content } from './Page404Content';
 
-function Page404Content() {
-  return (
-    <div className="ktl-layout">
-      <h1>404 - Page Not Found</h1>
-      <Link href="/">Go back home</Link>
-    </div>
-  );
-}
+import styles from './index.module.css';
 
 export default function Page404() {
-  return <Layout title="not found" component={Page404Content} />;
+  return (
+    <Layout
+      title="Welcome to Kotlin hands-on"
+      component={Page404Content}
+      className={styles.root}
+      footer={{ theme: 'dark' }}
+    />
+  );
 }

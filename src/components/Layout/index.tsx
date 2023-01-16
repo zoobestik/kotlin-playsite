@@ -20,6 +20,7 @@ export type FooterProps = {
 };
 
 export type LayoutProps = {
+  className?: string;
   title: string;
   description?: string;
   component: ComponentType;
@@ -41,6 +42,7 @@ export function Layout({
   theme = 'light',
   sticky = true,
   footer = true,
+  className,
 }: LayoutProps) {
   const { pathname } = useRouter();
 
@@ -68,7 +70,7 @@ export function Layout({
         />
 
         <main
-          className={cn(styles.main, styles[`main_theme_${theme}`])}
+          className={cn(styles.main, className, styles[`main_theme_${theme}`])}
           data-test="page-content"
         >
           <Component />

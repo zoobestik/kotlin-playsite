@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/experimental-ct-react';
 import { LoremSize, text } from '@/utils/specs/lorem';
 import { assertClassContains } from '@/utils/specs/asserts/common';
-import { checkComponentSnapshot } from '@/utils/specs/snapshot';
+import { assertComponentSnapshot } from '@/utils/specs/asserts/snapshot';
 
 import { HandsOnList } from './index';
 
@@ -57,5 +57,5 @@ test('render', async ({ mount }) => {
   }
 
   await items.first().hover();
-  await checkComponentSnapshot(component, 'initial.png');
+  await assertComponentSnapshot(component, 'initial.png');
 });
