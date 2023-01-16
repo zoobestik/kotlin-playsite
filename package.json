@@ -30,9 +30,9 @@
     "test:e2e:release": "export TEST_MODE=prod && next build && playwright test --reporter html",
     "test:ct": "npm run test:e2e -- -c playwright-ct.config.ts",
     "test:ct:release": "npm run test:e2e:release -- -c playwright-ct.config.ts",
-    "test:screens": "npm run test:ct:screens && npm run test:e2e:screens",
-    "test:e2e:screens": "npm run test:e2e:release -- --update-snapshots",
-    "test:ct:screens": "npm run test:ct:release -- --update-snapshots",
+    "test:snapshots": "npm run test:ct:snapshots && npm run test:e2e:snapshots",
+    "test:e2e:snapshots": "npm run test:e2e:release -- --update-snapshots",
+    "test:ct:snapshots": "npm run test:ct:release -- --update-snapshots",
     "clean": "rm -rf .next playwright/.cache"
   },
   "dependencies": {
