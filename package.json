@@ -2,34 +2,87 @@
   "name": "playground-v2",
   "version": "1.0.0-alpha.1",
   "private": true,
+  "engines": {
+    "npm": ">=8.0.0",
+    "node": ">=18.0.0"
+  },
+  "browserslist": [
+    ">0.5%",
+    "not dead",
+    "not op_mini all"
+  ],
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint"
+      "pre-commit": "lint-staged"
     }
   },
   "scripts": {
     "dev": "next dev",
+    "dev:turbo": "next dev --turbo",
     "build": "next build",
+    "export": "next build && next export",
+    "lint": "next lint --fix",
+    "prepare": "husky install",
     "start": "next start",
-    "lint": "next lint --fix"
+    "test": "next lint && npm run test:ct && npm run test:e2e",
+    "test:release": "next lint && npm run test:ct:release && npm run test:e2e:release",
+    "test:e2e": "export TEST_MODE=dev && playwright test --grep-invert @slow",
+    "test:e2e:release": "export TEST_MODE=prod && next build && playwright test --reporter html",
+    "test:ct": "npm run test:e2e -- -c playwright-ct.config.ts",
+    "test:ct:release": "npm run test:e2e:release -- -c playwright-ct.config.ts",
+    "test:snapshots": "npm run test:ct:snapshots && npm run test:e2e:snapshots",
+    "test:e2e:snapshots": "npm run test:e2e:release -- --update-snapshots",
+    "test:ct:snapshots": "npm run test:ct:release -- --update-snapshots",
+    "clean": "rm -rf .next playwright/.cache"
   },
   "dependencies": {
-    "next": "^13.0.7",
+    "@jetbrains/kotlin-web-site-ui": "^4.4.6",
+    "@react-hook/resize-observer": "^1.2.6",
+    "@rescui/button": "^0.7.5",
+    "@rescui/colors": "^0.1.5",
+    "@rescui/icons": "^0.10.3",
+    "@rescui/switcher": "^0.3.6",
+    "@rescui/typography": "^0.8.3",
+    "@rescui/ui-contexts": "0.3.1",
+    "body-scroll-lock": "^4.0.0-beta.0",
+    "classnames": "^2.3.2",
+    "next": "^13.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/node": "^18.11.2",
-    "@types/react": "^18.0.21",
-    "@types/react-dom": "^18.0.6",
-    "@typescript-eslint/eslint-plugin": "^5.40.1",
-    "@typescript-eslint/parser": "^5.40.1",
-    "eslint": "^8.25.0",
-    "eslint-config-next": "^13.0.7",
+    "@builder.io/partytown": "^0.7.3",
+    "@next/bundle-analyzer": "^13.1.1",
+    "@playwright/experimental-ct-react": "^1.29.2",
+    "@playwright/test": "^1.29.1",
+    "@types/node": "^18.11.18",
+    "@types/react": "^18.0.26",
+    "@types/react-dom": "^18.0.10",
+    "@typescript-eslint/eslint-plugin": "^5.47.1",
+    "@typescript-eslint/parser": "^5.47.1",
+    "compression-webpack-plugin": "^10.0.0",
+    "csso": "^5.0.5",
+    "csso-webpack-plugin": "^2.0.0-beta.3",
+    "dotenv": "^16.0.3",
+    "eslint": "^8.30.0",
+    "eslint-config-next": "^13.1.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "husky": "^8.0.1",
-    "prettier": "^2.7.1",
-    "typescript": "^4.8.4"
+    "husky": "^8.0.2",
+    "lint-staged": "^13.1.0",
+    "playwright": "^1.29.1",
+    "postcss-custom-media": "^9.0.1",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-import": "^15.1.0",
+    "postcss-preset-env": "^7.8.3",
+    "prettier": "^2.8.1",
+    "typescript": "^4.9.4",
+    "vite-tsconfig-paths": "^4.0.3",
+    "vitest": "^0.26.3"
+  },
+  "overrides": {
+    "csso": "^5.0.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }

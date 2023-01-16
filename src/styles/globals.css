@@ -1,6 +1,15 @@
+@import '@rescui/typography/lib/font-jb-sans-auto.css';
+@import '@rescui/typography/lib/font-inter.css';
+@import '@rescui/colors/lib/index.css';
+@import '@jetbrains/kotlin-web-site-ui/out/components/typography/index.css';
+
+:root {
+    --play-dark-theme-bg: #1b1b1b;
+}
+
 html, body, #__next {
     margin: 0;
     padding: 0;
-    height: 100%;
-    width: 100%;
+    min-height: 100vh;
+    min-width: 100vw;
 }

@@ -1,19 +1,33 @@
-# Playground v2
+# Kotlin Playground v2
 
 ## Getting Started
 
-First, run the development server:
+First, you need install dependencies:
+```bash
+npm ci
+```
+For run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
+Or, for generate static site:
+```bash
+npm run export
+```
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Additional features
+ * List of required environments in [`.env.example`](./.env.example).
+ * Add server redirects file into `src/pages/*/_redirects.mjs` for [custom redirects](./src/pages/hands-on/_redirects.mjs).
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/<pageName>](http://localhost:3000/api/<pageName>). This endpoint can be edited in `pages/api/<pageName>.ts`.
+## Tests
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+List of test modes:
+ * `npm run test` - dev test. It's reused localhost by by **dev**-mode
+ * `npm run test:release` - full list of test.
+
+Additional configuration (can be used from `.env.local`):
+ * `TEST_PROJECT_LIST` = List of devices. Possible values `all` | `dev` | `webkit` | `non_webkit`. Default: _it depends mode_.
+ * `TEST_HEADLESS_MODE` = Enable/disable headless mode. Default: _it depends mode_.

@@ -1,4 +1,4 @@
-export enum CompilerPlatforms {
+export enum Platform {
   JUNIT = 'junit',
   CANVAS = 'canvas',
   JS = 'js',

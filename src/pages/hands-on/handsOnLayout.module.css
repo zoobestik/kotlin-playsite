@@ -1,0 +1,19 @@
+.section {
+    --play-handson-page: 32px;
+}
+
+.title {
+    margin-top: var(--play-handson-page);
+    margin-bottom: 26px;
+}
+
+.intro {
+    margin-bottom: var(--play-handson-page);
+}
+
+.wrapper {
+    flex: 1 1 auto;
+    background: var(--ktl-light-grey);
+
+    width: 100%;
+}

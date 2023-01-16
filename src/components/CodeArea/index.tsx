@@ -1,10 +1,11 @@
-import { CompilerOptions } from './CompilerOptions';
+import { PlatformSettings } from '@/utils/compiler/PlatformSettings';
+
 import { IDisplayOptions } from './IDisplayOptions';
 
 interface CodeAreaProps extends IDisplayOptions {
   className?: string;
 
-  compiler: CompilerOptions;
+  compiler: PlatformSettings;
 
   code?: string;
   defaultCode?: string;
