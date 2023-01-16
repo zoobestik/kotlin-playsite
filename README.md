@@ -29,6 +29,5 @@ List of test modes:
  * `npm run test:release` - full list of test.
 
 Additional configuration (can be used from `.env.local`):
- * `TEST_LOWRES_AGENT` = Disable or alternative way for some high cpu required test. Default: `false`. Default: _it depends mode_.
  * `TEST_PROJECT_LIST` = List of devices. Possible values `short` | `normal` | `long`. Default: _it depends mode_.
  * `TEST_HEADLESS_MODE` = Enable/disable headless mode. Default: _it depends mode_.

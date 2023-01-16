@@ -26,7 +26,6 @@ const PROJECTS_LIST = {
 };
 
 const isDevMode = Boolean(env.TEST_MODE === 'dev');
-const isLowResMode = Boolean(env.TEST_LOWRES_AGENT === 'true');
 
 function getProjects() {
   const { TEST_PROJECT_LIST } = env;
@@ -43,8 +42,7 @@ function getProjects() {
     throw Error(`TEST_PROJECT_LIST should be ${list}`);
   }
 
-  // @TODO: Variable `TEST_LOWRES_AGENT` should disable specific test
-  if (isDevMode || isLowResMode) return PROJECTS_LIST.SHORT;
+  if (isDevMode) return PROJECTS_LIST.SHORT;
 
   return PROJECTS_LIST.NORMAL;
 }
@@ -69,7 +67,7 @@ const config: PlaywrightTestConfig = {
   testMatch: /.*\.e2e\.tsx?$/,
   snapshotPathTemplate,
 
-  timeout: isLowResMode ? 120000 : 60000,
+  timeout: 60000,
   forbidOnly: !isDevMode,
   reporter: 'list',
   retries: isDevMode ? 0 : 2,

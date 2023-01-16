@@ -16,9 +16,6 @@ jobs:
     timeout-minutes: 25
 
     env:
-      # Slow agent for github actions
-      TEST_LOWRES_AGENT: 'true'
-
       # Set .env.example
       NEXT_PUBLIC_SEARCH_ALGOLIA_ID: ${{ secrets.TEST_PUBLIC_SEARCH_ALGOLIA_ID }}
       NEXT_PUBLIC_SEARCH_ALGOLIA_API_KEY: ${{ secrets.TEST_PUBLIC_SEARCH_ALGOLIA_API_KEY }}
