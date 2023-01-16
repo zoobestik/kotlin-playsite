@@ -26,6 +26,7 @@ export function createConfig(phase) {
   /**  @type {import('next').NextConfig} */
   const nextConfig = {
     // basePath: '',
+    assetPrefix: env.ASSET_PREFIX || null,
     trailingSlash: true,
     reactStrictMode: true,
     transpilePackages: [...transpileKotlinWebSiteUi(), ...transpileRescUI()],
