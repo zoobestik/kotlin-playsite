@@ -1,0 +1,142 @@
+{
+  "hits": [
+    {
+      "mainTitle": "Write your first test with Lincheck",
+      "pageTitle": "Write your first test with Lincheck",
+      "url": "https://kotlinlang.org/docs/introduction.html",
+      "breadcrumbs": null,
+      "objectID": "/docs/introduction.html0",
+      "_snippetResult": {
+        "content": {
+          "value": "This tutorial demonstrates how to write your first Lincheck <em>test, set</em> up...",
+          "matchLevel": "full"
+        }
+      },
+      "_highlightResult": {
+        "headings": {
+          "value": "Write your first test with Lincheck",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "mainTitle": {
+          "value": "Write your first test with Lincheck",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "pageTitle": {
+          "value": "Write your first test with Lincheck",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "content": {
+          "value": "This tutorial demonstrates how to write your first Lincheck <em>test, set</em> up...",
+          "matchLevel": "full",
+          "fullyHighlighted": false,
+          "matchedWords": [
+            "testset"
+          ]
+        },
+        "url": {
+          "value": "https://kotlinlang.org/docs/introduction.html",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "metaDescription": {
+          "value": "",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "type": {
+          "value": "Documentation",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "parent": {
+          "value": "/docs/introduction.html",
+          "matchLevel": "none",
+          "matchedWords": []
+        }
+      }
+    },
+    {
+      "mainTitle": "Write your first test with Othercheck",
+      "pageTitle": "Write your first test with Othercheck",
+      "url": "https://kotlinlang.org/docs/introduction.html",
+      "breadcrumbs": null,
+      "objectID": "/docs/introduction.html0",
+      "_snippetResult": {
+        "content": {
+          "value": "This tutorial demonstrates how to write your first Lincheck <em>test, set</em> up...",
+          "matchLevel": "full"
+        }
+      },
+      "_highlightResult": {
+        "headings": {
+          "value": "Write your first test with Othercheck",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "mainTitle": {
+          "value": "Write your first test with Othercheck",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "pageTitle": {
+          "value": "Write your first test with Othercheck",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "content": {
+          "value": "This tutorial demonstrates how to write your first Othercheck <em>test, set</em> up ...",
+          "matchLevel": "full",
+          "fullyHighlighted": false,
+          "matchedWords": [
+            "testset"
+          ]
+        },
+        "url": {
+          "value": "https://kotlinlang.org/docs/introduction.html",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "metaDescription": {
+          "value": "",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "type": {
+          "value": "Documentation",
+          "matchLevel": "none",
+          "matchedWords": []
+        },
+        "parent": {
+          "value": "/docs/introduction.html",
+          "matchLevel": "none",
+          "matchedWords": []
+        }
+      }
+    }
+  ],
+  "nbHits": 1,
+  "page": 0,
+  "nbPages": 1,
+  "hitsPerPage": 75,
+  "exhaustiveNbHits": true,
+  "exhaustiveTypo": true,
+  "exhaustive": {
+    "nbHits": true,
+    "typo": true
+  },
+  "query": "testset",
+  "params": "query=testset&attributesToRetrieve=%5B%22pageTitle%22%2C%22url%22%2C%22breadcrumbs%22%2C%22mainTitle%22%5D&attributesToSnippet=%5B%22content%3A25%22%5D&clickAnalytics=true&hitsPerPage=75&snippetEllipsisText=%E2%80%A6&typoTolerance=true",
+  "queryID": "15b60c8cc26647a16d74f6febc49357a",
+  "renderingContent": {},
+  "processingTimeMS": 2,
+  "processingTimingsMS": {
+    "request": {
+      "roundTrip": 10
+    },
+    "total": 2
+  },
+  "serverTimeMS": 2
+}

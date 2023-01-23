@@ -1,4 +1,4 @@
-import { ComponentType } from 'react';
+import { ComponentType, useCallback } from 'react';
 import cn from 'classnames';
 
 import * as process from 'process';
@@ -44,10 +44,25 @@ export function Layout({
   footer = true,
   className,
 }: LayoutProps) {
-  const { pathname } = useRouter();
+  const { basePath, pathname, push } = useRouter();
 
   const { theme: footerTheme }: FooterProps =
     footer && footer !== true ? footer : {};
+
+  const checkUrlWithoutDomain = useCallback(
+    (url: string) => `${basePath}${pathname}` === url,
+    [basePath, pathname],
+  );
+
+  const internalNavigation = useCallback(
+    (event: Event, url: string) => {
+      if (url.startsWith('/')) {
+        event.preventDefault();
+        push(url);
+      }
+    },
+    [push],
+  );
 
   return (
     <ThemeProvider theme={theme}>
@@ -67,6 +82,8 @@ export function Layout({
           hasSearch
           searchConfig={searchConfig}
           noScrollClassName={'_no-scroll'}
+          linkHandler={internalNavigation}
+          isUrlActive={checkUrlWithoutDomain}
         />
 
         <main

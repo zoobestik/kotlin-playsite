@@ -19,7 +19,7 @@ const RESOLUTIONS_COVER_DEVICES = [
   'Galaxy Tab S4', // TS
   'iPad Pro 11', // TM
   'iPad (gen 7) landscape', // TM
-  'Desktop Chrome', // TM
+  'Desktop Chrome', // DM
   'Desktop Firefox',
   'Desktop Safari',
 ];
