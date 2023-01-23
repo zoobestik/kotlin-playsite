@@ -1,8 +1,9 @@
 import cn from 'classnames';
 import Link from 'next/link';
-import { useTextStyles } from '@kotlin-site/typography';
 
+import { useTextStyles } from '@kotlin-site/typography';
 import '@kotlin-site/layout';
+
 import styles from './Page404Content.module.css';
 
 export function Page404Content() {

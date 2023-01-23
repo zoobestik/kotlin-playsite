@@ -1,14 +1,13 @@
 import { expect, Locator, Page } from '@playwright/test';
+
 import { waitFontsReady } from '@/utils/specs/fonts';
+import { getPageContent } from '@/utils/specs/selectors/page';
 
 export async function assertPageSnapshot(
   page: Page,
   filename: string | string[],
 ) {
-  return assertComponentSnapshot(
-    page.getByTestId('page-content').first(),
-    filename,
-  );
+  return assertComponentSnapshot(getPageContent(page), filename);
 }
 
 export async function assertComponentSnapshot(

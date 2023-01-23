@@ -27,7 +27,7 @@ const RESOLUTIONS_COVER_DEVICES = [
 const PROJECTS_LIST = {
   ALL: RESOLUTIONS_COVER_DEVICES,
   DEV: [
-    'iPhone 8', // Mobile
+    'iPhone 8 Plus', // Mobile
     'Desktop Safari', // Desktop
   ],
   WEBKIT: RESOLUTIONS_COVER_DEVICES.filter(isWebkit),

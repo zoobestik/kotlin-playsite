@@ -12,6 +12,10 @@ test.describe('HandsOn', () => {
     await page.goto('/hands-on/', { waitUntil: 'domcontentloaded' });
   });
 
+  test('SEO attributes', async ({ page }) => {
+    await expect(page).toHaveTitle('Welcome to Kotlin hands-on');
+  });
+
   test('initial state elements', async ({ page }) => {
     await expect(page).toHaveTitle('Welcome to Kotlin hands-on');
 

@@ -81,7 +81,6 @@ export function Layout({
           isPlayground
           hasSearch
           searchConfig={searchConfig}
-          noScrollClassName={'_no-scroll'}
           linkHandler={internalNavigation}
           isUrlActive={checkUrlWithoutDomain}
         />
