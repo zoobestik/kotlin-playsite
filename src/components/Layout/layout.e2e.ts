@@ -3,10 +3,17 @@ import { mockSearchRequest } from '@/utils/specs/interactions/searchMock';
 
 import { assertLinksAvailable } from '@/utils/specs/asserts/links/available';
 import { getFooter } from '@/utils/specs/selectors/footer';
+import { clickMenuSubItem } from '@/utils/specs/interactions/globalMenu';
 
 test.describe('Global layout', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
+  });
+
+  test('Header: test internal navigation exist', async ({ page }) => {
+    const response = await clickMenuSubItem(page, 'Play', '/hands-on');
+
+    expect(response, 'navigate without page reload').toBeNull();
   });
 
   test('Header: test search environment', async ({ page }) => {
