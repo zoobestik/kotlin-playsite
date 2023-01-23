@@ -1,9 +1,9 @@
 import { expect, test } from '@playwright/test';
-import { mockSearchRequest } from '@/utils/specs/interactions/searchMock';
 
+import { clickMenuSubItem } from '@/utils/specs/interactions/mainMenu';
+import { mockSearchRequest } from '@/utils/specs/interactions/mainMenuSearch';
 import { assertLinksAvailable } from '@/utils/specs/asserts/links/available';
 import { getFooter } from '@/utils/specs/selectors/footer';
-import { clickMenuSubItem } from '@/utils/specs/interactions/globalMenu';
 
 test.describe('Global layout', () => {
   test.beforeEach(async ({ page }) => {

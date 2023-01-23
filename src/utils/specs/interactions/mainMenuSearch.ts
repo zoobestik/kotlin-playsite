@@ -1,10 +1,19 @@
 import { Page, Route } from '@playwright/test';
-import { inputTextToSearch } from '@/utils/specs/interactions/search';
 
-import MOCK from './searchMock.json';
+import FAKE_SEARCH_RESPONSE from './mainMenuSearch.mock.json';
+
+export async function inputTextToSearch(page: Page, val: string) {
+  await page.getByTestId('header-search-button').click();
+
+  const quickSearchInput = page
+    .getByTestId('quick-search-input')
+    .getByTestId('input__inner');
+
+  return quickSearchInput.fill(val);
+}
 
 export function mockSearchRequest(page: Page) {
-  const query = MOCK.query;
+  const { query } = FAKE_SEARCH_RESPONSE;
 
   return Promise.all([
     page.route(
@@ -22,7 +31,7 @@ export function mockSearchRequest(page: Page) {
           }
 
           if (requestQuery && query === requestQuery) {
-            await route.fulfill({ json: MOCK });
+            await route.fulfill({ json: FAKE_SEARCH_RESPONSE });
             return;
           }
         }
