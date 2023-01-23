@@ -6,6 +6,12 @@ test.describe('404', () => {
     await page.goto('/non-exist-page/', { waitUntil: 'domcontentloaded' });
   });
 
+  test('SEO attributes', async ({ page }) => {
+    await expect(page).toHaveTitle(
+      'Kotlin Playground: Edit, Run, Share Kotlin Code Online',
+    );
+  });
+
   test('Page works', async ({ page }) => {
     const backLink = page.getByTestId('page404-backlink');
 
