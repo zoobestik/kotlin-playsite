@@ -51,7 +51,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@builder.io/partytown": "^0.7.3",
+    "@builder.io/partytown": "^0.7.5",
     "@next/bundle-analyzer": "^13.1.2",
     "@playwright/experimental-ct-react": "^1.29.2",
     "@playwright/test": "^1.29.1",
