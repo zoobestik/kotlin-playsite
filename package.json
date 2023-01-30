@@ -38,7 +38,7 @@
   "dependencies": {
     "@jetbrains/kotlin-web-site-ui": "^4.4.6",
     "@react-hook/resize-observer": "^1.2.6",
-    "@rescui/button": "^0.7.5",
+    "@rescui/button": "^0.8.0",
     "@rescui/colors": "^0.1.5",
     "@rescui/icons": "^0.10.3",
     "@rescui/switcher": "^0.3.6",
