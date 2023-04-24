@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@builder.io/partytown": "^0.7.3",
-    "@next/bundle-analyzer": "^13.1.2",
+    "@next/bundle-analyzer": "^13.3.1",
     "@playwright/experimental-ct-react": "^1.29.2",
     "@playwright/test": "^1.29.1",
     "@types/node": "^18.11.18",
